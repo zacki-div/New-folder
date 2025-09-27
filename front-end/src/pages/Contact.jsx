@@ -43,8 +43,8 @@ function Contact() {
       <section className="pt-16 md:pt-20 pb-8 bg-transparent" data-aos="fade-up">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="font-serif font-bold text-3xl md:text-5xl leading-tight mb-4">Get in Touch</h1>
-            <p className="text-gray-600 text-base md:text-lg">Questions, feedback, or partnership ideas? We’d love to hear from you. Our team typically responds within one business day.</p>
+            <h1 className="font-serif font-bold text-3xl md:text-5xl leading-tight mb-4">Entrer en Contact</h1>
+            <p className="text-gray-600 text-base md:text-lg">Questions, commentaires ou idées de partenariat ? Nous aimerions avoir de vos nouvelles. Notre équipe répond généralement dans un délai d'un jour ouvrable.</p>
           </div>
         </div>
       </section>
@@ -54,11 +54,11 @@ function Contact() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* Contact info */}
           <div className="space-y-6">
-            <h2 className="font-serif text-2xl font-bold mb-2">Contact Information</h2>
+            <h2 className="font-serif text-2xl font-bold mb-2">Informations de Contact</h2>
             <InfoItem icon={Mail} title="Email" text="support@foodieapp.com" />
-            <InfoItem icon={Phone} title="Phone" text="(+1) 555-0199" delay={100} />
-            <InfoItem icon={MapPin} title="Address" text="123 Market Street, San Francisco, CA" delay={200} />
-            <InfoItem icon={Clock} title="Hours" text="Mon–Sat: 9:00–20:00, Sun: 10:00–18:00" delay={300} />
+            <InfoItem icon={Phone} title="Téléphone" text="(+1) 555-0199" delay={100} />
+            <InfoItem icon={MapPin} title="Adresse" text="123 Market Street, San Francisco, CA" delay={200} />
+            <InfoItem icon={Clock} title="Heures" text="Lun–Sam: 9:00–20:00, Dim: 10:00–18:00" delay={300} />
           </div>
 
           {/* Form */}
@@ -66,26 +66,26 @@ function Contact() {
             <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 space-y-4" data-aos="fade-left">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-                  <input id="name" name="name" type="text" value={form.name} onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-200" placeholder="Your name" />
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nom</label>
+                  <input id="name" name="name" type="text" value={form.name} onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-200" placeholder="Votre nom" />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                  <input id="email" name="email" type="email" value={form.email} onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-200" placeholder="you@example.com" />
+                  <input id="email" name="email" type="email" value={form.email} onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-200" placeholder="vous@exemple.com" />
                 </div>
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
-                <textarea id="message" name="message" rows="6" value={form.message} onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-200" placeholder="How can we help?" />
+                <textarea id="message" name="message" rows="6" value={form.message} onChange={handleChange} required className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-200" placeholder="Comment pouvons-nous vous aider ?" />
               </div>
 
               <div className="flex items-center gap-3">
                 <button type="submit" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition disabled:opacity-60" disabled={status === 'sending' || status === 'sent'}>
                   <Send className="w-4 h-4" />
-                  {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Sent!' : 'Send Message'}
+                  {status === 'sending' ? 'Envoi en cours…' : status === 'sent' ? 'Envoyé !' : 'Envoyer le Message'}
                 </button>
-                {status === 'error' && <span className="text-sm text-red-600">Please fill out all fields.</span>}
-                {status === 'sent' && <span className="text-sm text-green-600">Thanks! We’ll get back to you soon.</span>}
+                {status === 'error' && <span className="text-sm text-red-600">Veuillez remplir tous les champs.</span>}
+                {status === 'sent' && <span className="text-sm text-green-600">Merci ! Nous vous répondrons bientôt.</span>}
               </div>
             </form>
           </div>

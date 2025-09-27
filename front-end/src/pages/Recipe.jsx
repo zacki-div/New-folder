@@ -45,7 +45,7 @@ function Recipe() {
     return (
       <section className="pt-16 md:pt-20 pb-10">
         <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center text-gray-600">Recipe not found.</div>
+          <div className="text-center text-gray-600">Recette non trouvée.</div>
         </div>
       </section>
     )
@@ -116,8 +116,8 @@ function Recipe() {
 
           {/* Ingredients */}
           <div className="mt-6">
-            <h2 className="font-semibold mb-2">Ingredients</h2>
-            <p className="text-sm text-gray-500 mb-3">Uncheck ingredients you want to remove before adding to cart.</p>
+            <h2 className="font-semibold mb-2">Ingrédients</h2>
+            <p className="text-sm text-gray-500 mb-3">Décochez les ingrédients que vous souhaitez retirer avant d'ajouter au panier.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {ingredients.map((ing, idx) => (
                 <label key={idx} className="flex items-center gap-2 p-2 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer">
@@ -141,7 +141,7 @@ function Recipe() {
             </div>
             <button onClick={addToCart} className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition ${added ? 'scale-[1.02]' : ''}`}>
               <FiShoppingCart />
-              {added ? (editState && editState.edit ? 'Edited!' : 'Added!') : (editState && editState.edit ? 'Edit' : 'Add')}
+              {added ? (editState && editState.edit ? 'Modifié !' : 'Ajouté !') : (editState && editState.edit ? 'Modifier' : 'Ajouter au Panier')}
             </button>
           </div>
         </div>

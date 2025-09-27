@@ -67,23 +67,23 @@ function DesktopNav({ navItems = [], logo, cartCount: _unusedCartCountProp = 0 }
             </ul>
 
             <div className="flex gap-4 items-center font-medium">
-                <Link to="/favorites" className="relative flex items-center text-gray-700 hover:text-orange-600" aria-label="Favorites" title="Favorites" data-aos="fade-left" data-aos-delay={100 * (navItems.length + 1)}>
+                <Link to="/favorites" className="relative flex items-center text-gray-700 hover:text-orange-600" aria-label="Favoris" title="Favoris" data-aos="fade-left" data-aos-delay={100 * (navItems.length + 1)}>
                     <FiHeart className="w-7 h-7" />
                     {favCount > 0 && (
                         <span className="absolute -top-2 -right-3 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-pink-600 rounded-full">{favCount}</span>
                     )}
                 </Link>
-                <Link to="/cart" className="relative flex items-center text-gray-700 hover:text-orange-600" aria-label="Cart" title="Cart" data-aos="fade-left" data-aos-delay={100 * (navItems.length + 2)}>
+                <Link to="/cart" className="relative flex items-center text-gray-700 hover:text-orange-600" aria-label="Panier" title="Panier" data-aos="fade-left" data-aos-delay={100 * (navItems.length + 2)}>
                     <FiShoppingCart className="w-7 h-7" />
                     {cartCount > 0 && (
                         <span className="absolute -top-2 -right-3 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-orange-600 rounded-full">{cartCount}</span>
                     )}
                 </Link>
                 <Link to="/login" data-aos="fade-left" data-aos-delay={100 * (navItems.length + 3)}>
-                    <Button variant="ghost" className="text-[#1b2629] px-4 py-2 hover:bg-gray-100">Log in</Button>
+                    <Button variant="ghost" className="text-[#1b2629] px-4 py-2 hover:bg-gray-100">Se connecter</Button>
                 </Link>
                 <Link to="/signup" data-aos="fade-left" data-aos-delay={100 * (navItems.length + 4)}>
-                    <Button variant="solid" className="px-4 py-2 bg-orange-600 text-white hover:bg-orange-700">Sign up</Button>
+                    <Button variant="solid" className="px-4 py-2 bg-orange-600 text-white hover:bg-orange-700">S'inscrire</Button>
                 </Link>
             </div>
         </div>

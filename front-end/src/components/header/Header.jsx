@@ -8,9 +8,9 @@ function Header() {
   const [hideLeft, setHideLeft] = useState("-left-[1000px]");
   const [scrolled, setScrolled] = useState(false)
   const navItems = [
-    { name: "Home", path: "/" },
+    { name: "Accueil", path: "/" },
     { name: "Menu", path: "/menu" },
-    { name: "About", path: "/about" },
+    { name: "À Propos", path: "/about" },
     { name: "Contact", path: "/contact" }
   ];
 

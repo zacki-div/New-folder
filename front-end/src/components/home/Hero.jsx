@@ -12,16 +12,16 @@ function Hero() {
                 <div className="lg:w-1/2 w-full space-y-6" data-aos="fade-right">
                     <AppInstall/>
                     <h1 className="font-serif font-bold text-3xl md:text-4xl lg:text-5xl leading-tight">
-                        <span className="text-orange-600">Delicious</span> meals delivered to your door
+                        <span className="text-orange-600">Délicieux</span> plats livrés à votre porte
                     </h1>
 
                     <p className="text-gray-600 max-w-lg">
-                        Explore a wide selection of restaurants and dishes. Fast delivery, great prices, and a seamless ordering experience — right at your fingertips.
+                        Explorez une large sélection de restaurants et plats. Livraison rapide, prix excellents et une expérience de commande fluide — directement à portée de main.
                     </p>
 
                     <div className="flex flex-wrap gap-4">
                         <Link to="/menu">
-                            <Button variant="solid" className="bg-orange-600 hover:bg-orange-700 text-white px-5 py-3 rounded-lg shadow-md">Order Now</Button>
+                            <Button variant="solid" className="bg-orange-600 hover:bg-orange-700 text-white px-5 py-3 rounded-lg shadow-md">Commander Maintenant</Button>
                         </Link>
                         <Link to="/contact">
                             <Button variant="ghost" className="text-orange-600 px-4 py-2 hover:bg-gray-100">Contact</Button>

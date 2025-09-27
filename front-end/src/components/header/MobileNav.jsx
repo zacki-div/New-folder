@@ -55,13 +55,13 @@ function MobileNav({ navItems = [], logo, hideLeft = "-left-[1000px]", onOpen, o
             </Link>
 
             <div className="relative flex items-center gap-3">
-                <Link to="/favorites" aria-label="Favorites" title="Favorites" className="relative text-gray-700 hover:text-orange-600">
+                <Link to="/favorites" aria-label="Favoris" title="Favoris" className="relative text-gray-700 hover:text-orange-600">
                     <FiHeart className="w-7 h-7" />
                     {favCount > 0 && (
                         <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-pink-600 rounded-full">{favCount}</span>
                     )}
                 </Link>
-                <Link to="/cart" aria-label="Cart" title="Cart" className="relative text-gray-700 hover:text-orange-600">
+                <Link to="/cart" aria-label="Panier" title="Panier" className="relative text-gray-700 hover:text-orange-600">
                     <FiShoppingCart className="w-7 h-7" />
                     {(cartQty > 0 || cartCount > 0) && (
                         <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-orange-600 rounded-full">{cartQty || cartCount}</span>
@@ -69,7 +69,7 @@ function MobileNav({ navItems = [], logo, hideLeft = "-left-[1000px]", onOpen, o
                 </Link>
                 <button
                     onClick={onOpen}
-                    aria-label="Open menu"
+                    aria-label="Ouvrir le menu"
                     className="p-2 rounded-md border border-transparent hover:border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400"
                 >
                     <HiMiniBars3BottomRight className="w-7 h-7 text-[#1b2629]" />
@@ -88,7 +88,7 @@ function MobileNav({ navItems = [], logo, hideLeft = "-left-[1000px]", onOpen, o
                 <div className="relative mx-auto my-20 w-11/12 max-w-md bg-white rounded-xl p-6 shadow-2xl">
                     <button
                         onClick={onClose}
-                        aria-label="Close menu"
+                        aria-label="Fermer le menu"
                         className="absolute right-4 top-4 p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-orange-400"
                     >
                         <X className="w-6 h-6 text-gray-700" />
@@ -111,10 +111,10 @@ function MobileNav({ navItems = [], logo, hideLeft = "-left-[1000px]", onOpen, o
 
                         <div className="mt-8 flex gap-4 items-center font-medium">
                             <Link to="/login" onClick={onClose} className="flex-1">
-                                <Button variant="ghost" className="w-full text-[#1b2629] px-4 py-2 border border-gray-200">Log in</Button>
+                                <Button variant="ghost" className="w-full text-[#1b2629] px-4 py-2 border border-gray-200">Se connecter</Button>
                             </Link>
                             <Link to="/signup" onClick={onClose} className="flex-1">
-                                <Button variant="solid" className="w-full text-white px-4 py-2 bg-orange-600 hover:bg-orange-700">Sign up</Button>
+                                <Button variant="solid" className="w-full text-white px-4 py-2 bg-orange-600 hover:bg-orange-700">S'inscrire</Button>
                             </Link>
                         </div>
                     </nav>

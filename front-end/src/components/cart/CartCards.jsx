@@ -6,8 +6,8 @@ import fallbackImg from '../../assets/react.svg'
 
 function CartItem({
   image = fallbackImg,
-  title = 'Delicious Dish',
-  description = 'Tasty and fresh, chef recommended.',
+  title = 'Plat Délicieux',
+  description = 'Savoureux et frais, recommandé par le chef.',
   time = '25 min',
   rating = 4.6,
   price = 9.99,
@@ -35,7 +35,7 @@ function CartItem({
         <h4 className="text-base font-medium text-[#1b2629] truncate">{title}</h4>
         <p className="text-sm text-gray-500 truncate">{description}</p>
         {removed.length > 0 && (
-          <p className="text-xs text-gray-500 mt-1 truncate">Removed: {removed.join(', ')}</p>
+          <p className="text-xs text-gray-500 mt-1 truncate">Retiré: {removed.join(', ')}</p>
         )}
         <div className="mt-2 flex items-center gap-4 text-sm text-gray-600">
           <span className="inline-flex items-center gap-1"><FiClock className="text-orange-600" /> {time}</span>
@@ -54,7 +54,7 @@ function CartItem({
             type="button"
             onClick={onDecrease}
             className="p-1 rounded-full hover:bg-gray-100"
-            aria-label="Decrease quantity"
+            aria-label="Diminuer la quantité"
           >
             <FiMinus />
           </button>
@@ -63,7 +63,7 @@ function CartItem({
             type="button"
             onClick={onIncrease}
             className="p-1 rounded-full hover:bg-gray-100"
-            aria-label="Increase quantity"
+            aria-label="Augmenter la quantité"
           >
             <FiPlus />
           </button>
@@ -73,7 +73,7 @@ function CartItem({
           onClick={(e)=> { e.stopPropagation(); onRemove(); }}
           className="text-red-500 text-sm inline-flex items-center gap-1 hover:text-red-600"
         >
-          <FiTrash2 /> Remove
+          <FiTrash2 /> Retirer
         </button>
       </div>
     </article>
@@ -96,7 +96,7 @@ function CartCards({
       <section className="py-8">
         <div className="max-w-3xl mx-auto px-6">
           <div className="bg-white rounded-xl border border-dashed border-gray-300 p-8 text-center text-gray-600">
-            Your cart is empty.
+            Votre panier est vide.
           </div>
         </div>
       </section>
@@ -133,7 +133,7 @@ function CartCards({
             disabled={!items || items.length === 0}
             className={`h-10 px-4 rounded-full border border-red-200 text-red-600 transition ${(!items || items.length === 0) ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-50'}`}
           >
-            Empty Cart
+            Vider le Panier
           </button>
         </div>
       </div>

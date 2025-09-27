@@ -3,8 +3,8 @@ import MenuList from './MenuList'
 import { MENU_CATEGORIES } from './MenuList'
 
 function MenuHero({
-  title = 'Our Menu',
-  subtitle = 'Explore a variety of delicious dishes crafted with fresh ingredients and delivered fast.',
+  title = 'Notre Menu',
+  subtitle = 'Explorez une variété de plats délicieux préparés avec des ingrédients frais et livrés rapidement.',
   categories = MENU_CATEGORIES,
   activeCategory = MENU_CATEGORIES[0]?.name,
   onCategorySelect,

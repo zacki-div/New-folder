@@ -40,7 +40,7 @@ const Testimonials = () => {
 
   return (
     <section className="py-10">
-      <h3 className="text-center text-3xl lg:text-4xl font-serif font-bold mb-3">What Our Customers Say</h3>
+      <h3 className="text-center text-3xl lg:text-4xl font-serif font-bold mb-3">Ce Que Disent Nos Clients</h3>
       <div className="max-w-6xl mx-auto py-10 px-3 overflow-hidden">
         <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${safeIndex * slidePercent}%)` }}>
           {/* Duplicate testimonials to make seamless loop */}
@@ -60,7 +60,7 @@ const Testimonials = () => {
                 <div className="flex justify-between items-center mt-4">
                   <div>
                     <h3 className="font-semibold text-orange-600 text-lg">{item.name}</h3>
-                    <p className="text-sm mt-1 text-gray-500">Customer</p>
+                    <p className="text-sm mt-1 text-gray-500">Client</p>
                   </div>
                   <Quote className="text-orange-300" />
                 </div>

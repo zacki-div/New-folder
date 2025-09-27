@@ -11,11 +11,11 @@ const DEFAULT_IMG = fallbackImg
 function Cards({
   id = undefined,
   image = DEFAULT_IMG,
-  title = 'Delicious Dish',
-  description = 'Tasty and fresh, chef recommended.',
+  title = 'Plat Délicieux',
+  description = 'Savoureux et frais, recommandé par le chef.',
   rating = 4.6,
   time = '25 min',
-  level = 'Easy',
+  level = 'Facile',
   onAdd = () => {},
   onToggleFavorite = null,
   favorite = false,
@@ -83,7 +83,7 @@ function Cards({
         <button
           onClick={toggleFav}
           aria-pressed={fav}
-          aria-label={fav ? 'Remove favorite' : 'Add to favorites'}
+          aria-label={fav ? 'Retirer des favoris' : 'Ajouter aux favoris'}
           className="absolute right-3 top-3 bg-white p-2 rounded-full shadow-sm hover:scale-105 transition text-red-500 focus:outline-none focus:ring-2 focus:ring-orange-200"
         >
           {fav ? <FaHeart className="w-4 h-4" /> : <FaRegHeart className="w-4 h-4 text-gray-400" />}
@@ -125,10 +125,10 @@ function Cards({
         <div className="flex items-center gap-2">
           {viewUrl ? (
             <Link to={viewUrl} className="inline-block">
-              <Button variant="ghost" className="text-[#1b2629] px-4 py-2 hover:bg-gray-100">View</Button>
+              <Button variant="ghost" className="text-[#1b2629] px-4 py-2 hover:bg-gray-100">Voir</Button>
             </Link>
           ) : (
-            <Button variant="ghost" className="text-[#1b2629] px-4 py-2 hover:bg-gray-100" onClick={onView}>View</Button>
+            <Button variant="ghost" className="text-[#1b2629] px-4 py-2 hover:bg-gray-100" onClick={onView}>Voir</Button>
           )}
 
           <Button
@@ -141,7 +141,7 @@ function Cards({
             }}
           >
             <FiShoppingCart />
-            {added ? 'Added!' : 'Add'}
+            {added ? 'Ajouté!' : 'Ajouter'}
           </Button>
         </div>
       </div>

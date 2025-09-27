@@ -6,7 +6,7 @@ function Search({
   defaultValue = '',
   onChange,
   onSearch,
-  placeholder = 'Search dishes, cuisines, or restaurants...',
+  placeholder = 'Rechercher des plats, cuisines ou restaurants...',
   className = '',
   autoFocus = false,
   suggestions = [],
@@ -68,7 +68,7 @@ function Search({
           <button
             type="button"
             onClick={handleClear}
-            aria-label="Clear search"
+            aria-label="Effacer la recherche"
             className="absolute right-28 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-gray-600"
           >
             <X className="w-4 h-4" />
@@ -79,7 +79,7 @@ function Search({
           type="submit"
           className="absolute right-2 top-1/2 -translate-y-1/2 h-10 px-5 rounded-full bg-orange-600 hover:bg-orange-700 text-white font-medium shadow-sm"
         >
-          Search
+          Rechercher
         </button>
       </form>
 

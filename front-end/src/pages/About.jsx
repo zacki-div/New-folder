@@ -66,8 +66,8 @@ function About() {
       <section className="py-12 md:py-16 bg-transparent" data-aos="fade-up">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl">
-            <h1 className="font-serif font-bold text-3xl md:text-5xl leading-tight mb-4">Our Story, Your Taste</h1>
-            <p className="text-gray-600 text-base md:text-lg">We’re on a mission to make great food accessible to everyone — crafted with fresh ingredients, delivered fast, and served with care. From local favorites to chef-inspired dishes, quality and convenience are our core values.</p>
+            <h1 className="font-serif font-bold text-3xl md:text-5xl leading-tight mb-4">Notre Histoire, Votre Goût</h1>
+            <p className="text-gray-600 text-base md:text-lg">Nous avons pour mission de rendre la bonne nourriture accessible à tous — préparée avec des ingrédients frais, livrée rapidement et servie avec soin. Des favoris locaux aux plats inspirés par les chefs, la qualité et la commodité sont nos valeurs fondamentales.</p>
           </div>
         </div>
       </section>
@@ -76,10 +76,10 @@ function About() {
       <section className="py-8" data-aos="fade-up">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-white rounded-2xl border border-gray-100 p-6 md:p-8 shadow-sm">
-            <Stat value="100+" label="Partner Restaurants" />
-            <Stat value="25k+" label="Orders Delivered" delay={100} />
-            <Stat value="4.8/5" label="Average Rating" delay={200} />
-            <Stat value="30 min" label="Avg. Delivery Time" delay={300} />
+            <Stat value="100+" label="Restaurants Partenaires" />
+            <Stat value="25k+" label="Commandes Livrées" delay={100} />
+            <Stat value="4.8/5" label="Note Moyenne" delay={200} />
+            <Stat value="30 min" label="Temps de Livraison Moyen" delay={300} />
           </div>
         </div>
       </section>
@@ -87,16 +87,16 @@ function About() {
       {/* Values */}
       <section className="py-12" data-aos="fade-up">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <h2 className="text-center text-3xl lg:text-4xl font-bold font-serif mb-10">What We Believe</h2>
+          <h2 className="text-center text-3xl lg:text-4xl font-bold font-serif mb-10">Ce En Quoi Nous Croyons</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[{
-              icon: Leaf, title: 'Fresh Ingredients', desc: 'We source seasonal produce and cook with real, honest ingredients.'
+              icon: Leaf, title: 'Ingrédients Frais', desc: 'Nous nous approvisionnons en produits de saison et cuisinons avec de vrais ingrédients authentiques.'
             }, {
-              icon: Clock, title: 'Speed & Reliability', desc: 'Smart routing and efficient kitchens keep your food hot and fresh.'
+              icon: Clock, title: 'Rapidité et Fiabilité', desc: 'Un routage intelligent et des cuisines efficaces gardent votre nourriture chaude et fraîche.'
             }, {
-              icon: Award, title: 'Quality First', desc: 'Every dish goes through tasting and QA for consistency you can trust.'
+              icon: Award, title: 'Qualité d\'Abord', desc: 'Chaque plat passe par une dégustation et un contrôle qualité pour une cohérence en laquelle vous pouvez avoir confiance.'
             }, {
-              icon: Truck, title: 'Sustainable Delivery', desc: 'We optimize routes and use eco‑friendly packaging where possible.'
+              icon: Truck, title: 'Livraison Durable', desc: 'Nous optimisons les itinéraires et utilisons des emballages écologiques quand c\'est possible.'
             }].map((f, i) => {
               const Icon = f.icon
               return (
@@ -117,16 +117,19 @@ function About() {
       <section className="py-12" data-aos="fade-up">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div data-aos="fade-right">
-            <h2 className="font-serif font-bold text-2xl md:text-4xl mb-4">From a Small Kitchen to a City‑Wide Favorite</h2>
-            <p className="text-gray-600">We started with a simple goal — to deliver meals we’re proud to serve our friends and families. Today, we partner with talented chefs and beloved local spots to bring you a curated menu that balances comfort, creativity, and value.</p>
+            <h2 className="font-serif font-bold text-2xl md:text-4xl mb-4">D'une Petite Cuisine à un Favori de Toute la Ville</h2>
+            <p className="text-gray-600">Nous avons commencé avec un objectif simple — livrer des repas dont nous sommes fiers de servir à nos amis et familles. Aujourd'hui, nous nous associons avec des chefs talentueux et des endroits locaux bien-aimés pour vous apporter un menu sélectionné qui équilibre confort, créativité et valeur.</p>
             <ul className="mt-4 space-y-2 text-gray-700">
-              <li className="flex items-center gap-2"><ThumbsUp className="text-orange-600 w-4 h-4" /> Curated partnerships with trusted kitchens</li>
-              <li className="flex items-center gap-2"><Users className="text-orange-600 w-4 h-4" /> Community‑driven feedback loops</li>
-              <li className="flex items-center gap-2"><Truck className="text-orange-600 w-4 h-4" /> Continuous improvements to delivery speed</li>
+              <li className="flex items-center gap-2"><ThumbsUp className="text-orange-600 w-4 h-4" /> Partenariats sélectionnés avec des cuisines de confiance</li>
+              <li className="flex items-center gap-2"><Users className="text-orange-600 w-4 h-4" /> Boucles de retour d'information communautaires</li>
+              <li className="flex items-center gap-2"><Truck className="text-orange-600 w-4 h-4" /> Améliorations continues de la vitesse de livraison</li>
             </ul>
           </div>
-          <div className="bg-orange-50 rounded-2xl h-64 md:h-80 flex items-center justify-center" data-aos="fade-left">
-            <div className="text-orange-600 font-serif text-5xl">🍽️</div>
+          <div className="relative group">
+            <span className="pointer-events-none absolute inset-0 -z-10 rounded-[50%] bg-gradient-to-tr from-orange-400/40 via-pink-400/30 to-yellow-300/30 blur-2xl opacity-30 group-hover:opacity-60 transition-opacity duration-500 animate-soft-glow"></span>
+            <div className="w-72 h-72 md:w-96 md:h-96 bg-orange-50 rounded-[50%] flex items-center justify-center text-orange-600 text-[6rem] md:text-[8rem] shadow-xl group-hover:shadow-2xl transform-gpu transition-transform duration-500 ease-out group-hover:scale-105 group-hover:rotate-[-6deg] animate-float">
+              <img src={logo} alt="logo" className="w-[80%]" />
+            </div>
           </div>
         </div>
       </section>
@@ -136,12 +139,12 @@ function About() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
-              <h3 className="font-serif text-2xl md:text-3xl font-bold">Ready to taste the difference?</h3>
-              <p className="text-gray-600 mt-1">Browse our full menu or reach out — we’d love to hear from you.</p>
+              <h3 className="font-serif text-2xl md:text-3xl font-bold">Prêt à goûter la différence ?</h3>
+              <p className="text-gray-600 mt-1">Parcourez notre menu complet ou contactez-nous — nous aimerions avoir de vos nouvelles.</p>
             </div>
             <div className="flex gap-3">
-              <Link to="/menu" className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition">View Menu</Link>
-              <Link to="/contact" className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-50 transition">Contact Us</Link>
+              <Link to="/menu" className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition">Voir le Menu</Link>
+              <Link to="/contact" className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-50 transition">Nous Contacter</Link>
             </div>
           </div>
         </div>

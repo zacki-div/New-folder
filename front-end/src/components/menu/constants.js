@@ -1,32 +1,28 @@
 // Shared menu constants and helpers
 import { MENU_CATEGORIES } from './MenuList'
 
-export const DEFAULT_CATEGORY_NAME = MENU_CATEGORIES[0]?.name || 'Quick and easy'
+export const DEFAULT_CATEGORY_NAME = MENU_CATEGORIES[0]?.name || 'Rapide et facile'
 
 export const CATEGORY_COPY = {
-  'Quick and easy': {
-    title: 'Quick and easy',
-    subtitle: 'Fast bites for busy days — tasty, simple, and satisfying.',
+  'Rapide et facile': {
+    title: 'Rapide et facile',
+    subtitle: 'Plats rapides pour les journées chargées — savoureux, simples et satisfaisants.',
   },
   'Desserts': {
     title: 'Desserts',
-    subtitle: 'Indulge in sweet treats, from creamy classics to modern delights.',
+    subtitle: 'Savourez des douceurs sucrées, des classiques crémeux aux délices modernes.',
   },
-  'Lunch & Dinner': {
-    title: 'Lunch & Dinner',
-    subtitle: 'Hearty mains and comfort plates to power your day.',
+  'Déjeuner & Dîner': {
+    title: 'Déjeuner & Dîner',
+    subtitle: 'Plats copieux et réconfortants pour vous donner de l\'énergie toute la journée.',
   },
-  'Drinks': {
-    title: 'Drinks',
-    subtitle: 'Refresh with juices, sodas, and specialty sips.',
+  'Boissons': {
+    title: 'Boissons',
+    subtitle: 'Rafraîchissez-vous avec des jus, sodas et boissons spéciales.',
   },
-  'Salads': {
-    title: 'Salads',
-    subtitle: 'Crisp, fresh, and flavorful bowls packed with goodness.',
-  },
-  'Patisserie': {
-    title: 'Patisserie',
-    subtitle: 'Delicate pastries and baked delights crafted to perfection.',
+  'Salades': {
+    title: 'Salades',
+    subtitle: 'Bolons croquants, frais et savoureux pleins de bienfaits.',
   },
 }
 
@@ -35,13 +31,13 @@ export function getCategoryCopy(name) {
   if (name === 'All') {
     return {
       title: 'Menu',
-      subtitle: 'Browse all categories and dishes in one place.',
+      subtitle: 'Parcourez toutes les catégories et plats en un seul endroit.',
     }
   }
   const entry = CATEGORY_COPY[name]
   if (entry) return entry
   return {
     title: name || DEFAULT_CATEGORY_NAME,
-    subtitle: 'Choose a category to explore our dishes.',
+    subtitle: 'Choisissez une catégorie pour explorer nos plats.',
   }
 }

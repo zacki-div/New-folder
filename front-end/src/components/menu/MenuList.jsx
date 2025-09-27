@@ -10,12 +10,11 @@ export function slugify(name) {
 }
 
 export const MENU_CATEGORIES = [
-  { name: 'Quick and easy', icon: FaHamburger, count: 24 },
+  { name: 'Rapide et facile', icon: FaHamburger, count: 24 },
   { name: 'Desserts', icon: FaIceCream, count: 12 },
-  { name: 'Lunch & Dinner', icon: FaPizzaSlice, count: 32 },
-  { name: 'Drinks', icon: FaGlassCheers, count: 8 },
-  { name: 'Salads', icon: FaAppleAlt, count: 10 },
-  { name: 'Patisserie', icon: FaIceCream, count: 18 },
+  { name: 'Déjeuner & Dîner', icon: FaPizzaSlice, count: 32 },
+  { name: 'Boissons', icon: FaGlassCheers, count: 8 },
+  { name: 'Salades', icon: FaAppleAlt, count: 10 },
 ]
 
 function MenuList({

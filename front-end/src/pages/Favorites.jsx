@@ -50,11 +50,10 @@ function Favorites() {
     if (typeof r.price === 'number') return r.price
     switch (r.category) {
       case 'Desserts': return 6.5
-      case 'Drinks': return 3.0
-      case 'Patisserie': return 3.0
-      case 'Salads': return 8.0
-      case 'Lunch & Dinner': return 12.0
-      case 'Quick and easy': return 9.0
+      case 'Boissons': return 3.0
+      case 'Salades': return 8.0
+      case 'Déjeuner & Dîner': return 12.0
+      case 'Rapide et facile': return 9.0
       default: return 9.99
     }
   }
@@ -79,15 +78,15 @@ function Favorites() {
   return (
     <>
       <MenuHero
-        title="Your Favorites"
-        subtitle="All the dishes you love, collected in one place."
+        title="Vos Favoris"
+        subtitle="Tous les plats que vous aimez, rassemblés en un seul endroit."
         categories={[]}
         activeCategory=""
       />
 
       <div className="max-w-3xl mx-auto px-6">
         <Search
-          placeholder="Search favorites..."
+          placeholder="Rechercher dans les favoris..."
           value={searchQuery}
           onChange={setSearchQuery}
           onSearch={setSearchQuery}
@@ -99,7 +98,7 @@ function Favorites() {
         <section className="py-12">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="bg-white rounded-xl border border-dashed border-gray-300 p-8 text-center text-gray-600">
-              No favorites yet.
+              Aucun favori pour le moment.
             </div>
           </div>
         </section>
@@ -126,7 +125,7 @@ function Favorites() {
                 />
               ))}
               {filtered.length === 0 && (
-                <div className="col-span-full text-center text-gray-500">No favorites match your search.</div>
+                <div className="col-span-full text-center text-gray-500">Aucun favori ne correspond à votre recherche.</div>
               )}
             </div>
           </div>
