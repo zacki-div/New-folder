@@ -3,9 +3,20 @@ import { X } from "lucide-react";
 import { Link } from "react-router-dom";
 import Button from '../Button';
 import React from 'react'
-import { FiShoppingCart, FiHeart } from 'react-icons/fi'
+import { FiShoppingCart, FiHeart, FiUser, FiLogOut } from 'react-icons/fi'
+import { useAuth } from '../../contexts/AuthContext'
 
 function MobileNav({ navItems = [], logo, hideLeft = "-left-[1000px]", onOpen, onClose, cartCount = 0 }) {
+    const { isAuthenticated, user, logout } = useAuth()
+
+    const handleLogout = async () => {
+        try {
+            await logout()
+            onClose() // Fermer le menu après déconnexion
+        } catch (error) {
+            console.error('Erreur lors de la déconnexion:', error)
+        }
+    }
     const [favCount, setFavCount] = React.useState(() => {
         try {
             const raw = localStorage.getItem('fav_items')
@@ -55,18 +66,25 @@ function MobileNav({ navItems = [], logo, hideLeft = "-left-[1000px]", onOpen, o
             </Link>
 
             <div className="relative flex items-center gap-3">
-                <Link to="/favorites" aria-label="Favoris" title="Favoris" className="relative text-gray-700 hover:text-orange-600">
-                    <FiHeart className="w-7 h-7" />
-                    {favCount > 0 && (
-                        <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-pink-600 rounded-full">{favCount}</span>
-                    )}
-                </Link>
-                <Link to="/cart" aria-label="Panier" title="Panier" className="relative text-gray-700 hover:text-orange-600">
-                    <FiShoppingCart className="w-7 h-7" />
-                    {(cartQty > 0 || cartCount > 0) && (
-                        <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-orange-600 rounded-full">{cartQty || cartCount}</span>
-                    )}
-                </Link>
+                {isAuthenticated && (
+                    <>
+                        <Link to="/favorites" aria-label="Favoris" title="Favoris" className="relative text-gray-700 hover:text-orange-600">
+                            <FiHeart className="w-7 h-7" />
+                            {favCount > 0 && (
+                                <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-pink-600 rounded-full">{favCount}</span>
+                            )}
+                        </Link>
+                        <Link to="/cart" aria-label="Panier" title="Panier" className="relative text-gray-700 hover:text-orange-600">
+                            <FiShoppingCart className="w-7 h-7" />
+                            {(cartQty > 0 || cartCount > 0) && (
+                                <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-white bg-orange-600 rounded-full">{cartQty || cartCount}</span>
+                            )}
+                        </Link>
+                        <Link to="/profile" aria-label="Profil" title="Profil" className="text-gray-700 hover:text-orange-600">
+                            <FiUser className="w-7 h-7" />
+                        </Link>
+                    </>
+                )}
                 <button
                     onClick={onOpen}
                     aria-label="Ouvrir le menu"
@@ -109,13 +127,31 @@ function MobileNav({ navItems = [], logo, hideLeft = "-left-[1000px]", onOpen, o
                             ))}
                         </ul>
 
-                        <div className="mt-8 flex gap-4 items-center font-medium">
-                            <Link to="/login" onClick={onClose} className="flex-1">
-                                <Button variant="ghost" className="w-full text-[#1b2629] px-4 py-2 border border-gray-200">Se connecter</Button>
-                            </Link>
-                            <Link to="/signup" onClick={onClose} className="flex-1">
-                                <Button variant="solid" className="w-full text-white px-4 py-2 bg-orange-600 hover:bg-orange-700">S'inscrire</Button>
-                            </Link>
+                        <div className="mt-8">
+                            {isAuthenticated ? (
+                                <div className="space-y-4">
+                                    <div className="text-center p-3 bg-orange-50 rounded-lg">
+                                        <p className="text-sm text-gray-600">Connecté en tant que</p>
+                                        <p className="font-medium text-orange-600">{user?.firstName} {user?.lastName}</p>
+                                    </div>
+                                    <button 
+                                        onClick={handleLogout}
+                                        className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+                                    >
+                                        <FiLogOut className="w-4 h-4" />
+                                        Se déconnecter
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="flex gap-4 items-center font-medium">
+                                    <Link to="/login" onClick={onClose} className="flex-1">
+                                        <Button variant="ghost" className="w-full text-[#1b2629] px-4 py-2 border border-gray-200">Se connecter</Button>
+                                    </Link>
+                                    <Link to="/signup" onClick={onClose} className="flex-1">
+                                        <Button variant="solid" className="w-full text-white px-4 py-2 bg-orange-600 hover:bg-orange-700">S'inscrire</Button>
+                                    </Link>
+                                </div>
+                            )}
                         </div>
                     </nav>
                 </div>

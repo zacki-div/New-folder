@@ -80,35 +80,28 @@ function Contact() {
               </div>
 
               <div className="flex items-center gap-3">
-                <button type="submit" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition disabled:opacity-60" disabled={status === 'sending' || status === 'sent'}>
+                <button
+                  type="submit"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition disabled:opacity-60"
+                  disabled={status === 'sending' || status === 'sent'}
+                >
                   <Send className="w-4 h-4" />
                   {status === 'sending' ? 'Envoi en cours…' : status === 'sent' ? 'Envoyé !' : 'Envoyer le Message'}
                 </button>
-                {status === 'error' && <span className="text-sm text-red-600">Veuillez remplir tous les champs.</span>}
-                {status === 'sent' && <span className="text-sm text-green-600">Merci ! Nous vous répondrons bientôt.</span>}
+                {status === 'error' && (
+                  <span className="text-sm text-red-600">Veuillez remplir tous les champs.</span>
+                )}
+                {status === 'sent' && (
+                  <span className="text-sm text-green-600">Merci ! Nous vous répondrons bientôt.</span>
+                )}
               </div>
             </form>
           </div>
         </div>
       </section>
 
-      {/* Map */}
-      <section className="py-10" data-aos="fade-up">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="w-full h-72 md:h-96 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-            <iframe
-              title="Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.126748727925!2d-122.4194151846817!3d37.77492977975974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c2f0f4afd%3A0xbadf1c9c356ef!2sMarket%20St%2C%20San%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1616621234567!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-        </div>
-      </section>
+      {/* Map moved to About page */}
+
     </>
   )
 }

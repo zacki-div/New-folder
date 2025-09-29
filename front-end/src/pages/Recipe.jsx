@@ -96,8 +96,8 @@ function Recipe() {
     <section className="pt-16 md:pt-20 pb-12" data-aos="fade-up">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
         {/* Image */}
-        <div className="rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 shadow-sm" data-aos="fade-right">
-          <img src={recipe.image} alt={recipe.title} className="w-full h-80 object-cover" onError={(e)=>{e.currentTarget.style.opacity='0.6'}} />
+        <div className="rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 shadow-sm h-72 md:h-80 lg:h-96" data-aos="fade-right">
+          <img src={recipe.image} alt={recipe.title} className="w-full h-full object-cover" onError={(e)=>{e.currentTarget.style.opacity='0.6'}} />
         </div>
 
         {/* Content */}

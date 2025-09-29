@@ -1,30 +1,48 @@
 import React from 'react'
-import { Mail, Lock, LogIn } from 'lucide-react'
+import { Mail, Lock, LogIn, AlertCircle } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
 
 function Login() {
   const navigate = useNavigate()
+  const { login, isLoading, error, clearError, isAuthenticated } = useAuth()
   const [form, setForm] = React.useState({ email: '', password: '' })
   const [showPwd, setShowPwd] = React.useState(false)
-  const [status, setStatus] = React.useState('idle') // idle | submitting | error
+
+  // Scroll vers le haut au montage du composant
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [])
+
+  // Rediriger si déjà connecté
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/')
+    }
+  }, [isAuthenticated, navigate])
 
   function handleChange(e) {
     const { name, value } = e.target
     setForm((f) => ({ ...f, [name]: value }))
+    // Effacer les erreurs lors de la saisie
+    if (error) {
+      clearError()
+    }
   }
 
   async function handleSubmit(e) {
     e.preventDefault()
     if (!form.email.trim() || !form.password.trim()) {
-      setStatus('error')
       return
     }
-    setStatus('submitting')
-    // Simulate auth
-    setTimeout(() => {
-      setStatus('idle')
+
+    try {
+      await login(form.email, form.password)
       navigate('/')
-    }, 800)
+    } catch (err) {
+      // L'erreur est gérée par le contexte
+      console.error('Erreur de connexion:', err)
+    }
   }
 
   return (
@@ -48,6 +66,13 @@ function Login() {
             </div>
           </div>
 
+          {error && (
+            <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+              <span>{error}</span>
+            </div>
+          )}
+
           <div className="flex items-center justify-between text-sm">
             <div className="text-gray-500">Pas de compte ?
               <Link to="/signup" className="text-orange-600 hover:underline ml-1">En créer un</Link>
@@ -55,9 +80,9 @@ function Login() {
             <Link to="#" className="text-gray-500 hover:underline">Mot de passe oublié ?</Link>
           </div>
 
-          <button type="submit" disabled={status==='submitting'} className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition disabled:opacity-60">
+          <button type="submit" disabled={isLoading} className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition disabled:opacity-60">
             <LogIn className="w-4 h-4" />
-            {status==='submitting' ? 'Connexion en cours…' : 'Se connecter'}
+            {isLoading ? 'Connexion en cours…' : 'Se connecter'}
           </button>
 
         </form>
