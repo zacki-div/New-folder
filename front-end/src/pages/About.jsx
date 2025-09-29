@@ -128,7 +128,7 @@ function About() {
           <div className="relative group">
             <span className="pointer-events-none absolute inset-0 -z-10 rounded-[50%] bg-gradient-to-tr from-orange-400/40 via-pink-400/30 to-yellow-300/30 blur-2xl opacity-30 group-hover:opacity-60 transition-opacity duration-500 animate-soft-glow"></span>
             <div className="w-72 h-72 md:w-96 md:h-96 bg-orange-50 rounded-[50%] flex items-center justify-center text-orange-600 text-[6rem] md:text-[8rem] shadow-xl group-hover:shadow-2xl transform-gpu transition-transform duration-500 ease-out group-hover:scale-105 group-hover:rotate-[-6deg] animate-float">
-              <img src={logo} alt="logo" className="w-[80%]" />
+              <img src="logo.svg" alt="logo" className="w-[80%]" />
             </div>
           </div>
         </div>
