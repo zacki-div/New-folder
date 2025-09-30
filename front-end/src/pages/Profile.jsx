@@ -158,8 +158,15 @@ function Profile() {
     }
   };
 
+  // Order status counts and filtering
+  const [filterStatus, setFilterStatus] = useState('ALL'); // 'ALL' | 'Livrée' | 'En cours' | 'Annulée'
+  const deliveredCount = orders.filter((o) => o.status === 'Livrée').length;
+  const inProgressCount = orders.filter((o) => o.status === 'En cours').length;
+  const cancelledCount = orders.filter((o) => o.status === 'Annulée').length;
+  const visibleOrders = filterStatus === 'ALL' ? orders : orders.filter(o => o.status === filterStatus);
+
   return (
-    <div className="min-h-screen bg-[#f9f7f3] font-['Inter']">
+    <div className="min-h-screen bg-[#f9f7f3] font-['Inter'] mt-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           
@@ -342,43 +349,43 @@ function Profile() {
               </div>
             )}
 
-            {/* Statistics Cards */}
+            {/* Order Status Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {/* En préparation */}
               <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 group">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-orange-600 mb-1">15</div>
-                    <div className="text-sm font-semibold text-gray-700">Commandes</div>
-                    <div className="text-xs text-gray-500">Total passées</div>
+                    <div className="text-3xl font-bold text-orange-600 mb-1">{inProgressCount}</div>
+                    <div className="text-sm font-semibold text-gray-700">En préparation</div>
                   </div>
                   <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <FiShoppingBag className="w-6 h-6 text-white" />
+                    <FiClock className="w-6 h-6 text-white" />
                   </div>
                 </div>
               </div>
 
+              {/* Livrées */}
               <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 group">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-3xl font-bold text-pink-600 mb-1">7</div>
-                    <div className="text-sm font-semibold text-gray-700">Favoris</div>
-                    <div className="text-xs text-gray-500">Plats sauvegardés</div>
-                  </div>
-                  <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <FiHeart className="w-6 h-6 text-white" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 group">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-3xl font-bold text-green-600 mb-1">4</div>
-                    <div className="text-sm font-semibold text-gray-700">Avis</div>
-                    <div className="text-xs text-gray-500">Restaurants notés</div>
+                    <div className="text-3xl font-bold text-green-600 mb-1">{deliveredCount}</div>
+                    <div className="text-sm font-semibold text-gray-700">Livrées</div>
                   </div>
                   <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <FiStar className="w-6 h-6 text-white" />
+                    <FiCheck className="w-6 h-6 text-white" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Annulées */}
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-all duration-300 group">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-3xl font-bold text-red-600 mb-1">{cancelledCount}</div>
+                    <div className="text-sm font-semibold text-gray-700">Annulées</div>
+                  </div>
+                  <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <FiXCircle className="w-6 h-6 text-white" />
                   </div>
                 </div>
               </div>
