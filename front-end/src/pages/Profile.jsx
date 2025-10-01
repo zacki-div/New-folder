@@ -3,6 +3,7 @@ import { FiUser, FiMail, FiPhone, FiMapPin, FiEdit3, FiSave, FiX, FiCamera, FiAl
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import { useAuth } from '../contexts/AuthContext';
+import orderService from '../services/orderService';
 
 function Profile() {
   const navigate = useNavigate();
@@ -21,45 +22,31 @@ function Profile() {
   const [editData, setEditData] = useState(profileData);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Mock orders data for demonstration
-  const [orders] = useState([
-    {
-      id: 1,
-      restaurantName: "Chez Fatima",
-      mealName: "Couscous Royal",
-      image: "https://images.unsplash.com/photo-1551782450-17144efb9c50?w=100&h=100&fit=crop&crop=center",
-      date: "2024-01-15",
-      status: "Livrée",
-      price: 85
-    },
-    {
-      id: 2,
-      restaurantName: "Tajine Express",
-      mealName: "Tajine Poulet aux Olives",
-      image: "https://images.unsplash.com/photo-1574484284002-952d92456975?w=100&h=100&fit=crop&crop=center",
-      date: "2024-01-12",
-      status: "En cours",
-      price: 65
-    },
-    {
-      id: 3,
-      restaurantName: "Pastilla Palace",
-      mealName: "Pastilla au Poisson",
-      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=100&h=100&fit=crop&crop=center",
-      date: "2024-01-10",
-      status: "Annulée",
-      price: 95
-    },
-    {
-      id: 4,
-      restaurantName: "Harira House",
-      mealName: "Harira Traditionnelle + Pain",
-      image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=100&h=100&fit=crop&crop=center",
-      date: "2024-01-08",
-      status: "Livrée",
-      price: 35
+  // Real orders from user data (empty by default)
+  const [orders, setOrders] = useState([]);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  // Load orders from user data when available
+  useEffect(() => {
+    if (user && Array.isArray(user.orders)) {
+      setOrders(user.orders);
+    } else {
+      setOrders([]); // No orders if user doesn't have any
     }
-  ]);
+  }, [user]);
+
+  // Listen for auth state changes (including order updates)
+  useEffect(() => {
+    const handleAuthStateChange = (event) => {
+      const { user: updatedUser } = event.detail;
+      if (updatedUser && Array.isArray(updatedUser.orders)) {
+        setOrders(updatedUser.orders);
+      }
+    };
+
+    window.addEventListener('auth_state_changed', handleAuthStateChange);
+    return () => window.removeEventListener('auth_state_changed', handleAuthStateChange);
+  }, []);
 
   // Rediriger si non connecté
   useEffect(() => {
@@ -158,12 +145,34 @@ function Profile() {
     }
   };
 
-  // Order status counts and filtering
-  const [filterStatus, setFilterStatus] = useState('ALL'); // 'ALL' | 'Livrée' | 'En cours' | 'Annulée'
+  // Handle order status update
+  const handleOrderStatusUpdate = async (orderId, newStatus) => {
+    try {
+      await orderService.updateOrderStatus(orderId, newStatus);
+      // Orders will be updated automatically via the auth state change event
+    } catch (error) {
+      console.error('Failed to update order status:', error);
+      // You could show an error message here if needed
+    }
+  };
+
+  // Handle clear all orders
+  const handleClearAllOrders = async () => {
+    try {
+      await orderService.clearAllOrders();
+      setShowDeleteConfirm(false);
+      // Orders will be updated automatically via the auth state change event
+    } catch (error) {
+      console.error('Failed to clear orders:', error);
+      setShowDeleteConfirm(false);
+      // You could show an error message here if needed
+    }
+  };
+
+  // Order status counts
   const deliveredCount = orders.filter((o) => o.status === 'Livrée').length;
   const inProgressCount = orders.filter((o) => o.status === 'En cours').length;
   const cancelledCount = orders.filter((o) => o.status === 'Annulée').length;
-  const visibleOrders = filterStatus === 'ALL' ? orders : orders.filter(o => o.status === filterStatus);
 
   return (
     <div className="min-h-screen bg-[#f9f7f3] font-['Inter'] mt-8">
@@ -393,38 +402,123 @@ function Profile() {
 
             {/* Orders List */}
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-              <h3 className="text-2xl font-bold text-[#1b2629] font-['Lora'] mb-6">Mes commandes récentes</h3>
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-[#1b2629] font-['Lora']">Mes commandes récentes</h3>
+                {orders.length > 0 && (
+                  <button
+                    onClick={() => setShowDeleteConfirm(true)}
+                    className="flex items-center gap-2 px-3 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors duration-200 text-sm font-medium"
+                  >
+                    <FiX className="w-4 h-4" />
+                    Supprimer historique
+                  </button>
+                )}
+              </div>
               
               <div className="space-y-4">
-                {orders.map((order) => (
-                  <div key={order.id} className="flex items-center p-4 border border-gray-200 rounded-xl hover:shadow-md transition-shadow duration-200">
-                    <img 
-                      src={order.image} 
-                      alt={order.mealName}
-                      className="w-16 h-16 rounded-lg object-cover mr-4"
-                    />
-                    
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <h4 className="font-semibold text-gray-900 mb-1">{order.mealName}</h4>
-                          <p className="text-sm text-gray-600 mb-1">{order.restaurantName}</p>
-                          <p className="text-xs text-gray-500">{new Date(order.date).toLocaleDateString('fr-FR')}</p>
-                        </div>
+                {orders.length === 0 ? (
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <FiShoppingBag className="w-8 h-8 text-gray-400" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">Aucune commande</h4>
+                    <p className="text-gray-600">Vous n'avez pas encore passé de commande.</p>
+                  </div>
+                ) : (
+                  orders.map((order) => (
+                    <div key={order.id} className="p-4 border border-gray-200 rounded-xl hover:shadow-md transition-shadow duration-200">
+                      <div className="flex items-center mb-3">
+                        <img 
+                          src={order.image} 
+                          alt={order.mealName}
+                          className="w-16 h-16 rounded-lg object-cover mr-4"
+                        />
                         
-                        <div className="text-right">
-                          <div className="mb-2">{getStatusBadge(order.status)}</div>
-                          <p className="text-lg font-bold text-[#1b2629]">{order.price} DH</p>
+                        <div className="flex-1">
+                          <div className="flex items-start justify-between">
+                            <div>
+                              <h4 className="font-semibold text-gray-900 mb-1">{order.mealName}</h4>
+                              <p className="text-sm text-gray-600 mb-1">{order.restaurantName}</p>
+                              <p className="text-xs text-gray-500">{new Date(order.date).toLocaleDateString('fr-FR')}</p>
+                            </div>
+                            
+                            <div className="text-right">
+                              <div className="mb-2">{getStatusBadge(order.status)}</div>
+                              <p className="text-lg font-bold text-[#1b2629]">{order.price} DH</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
+                      
+                      {/* Action buttons - only show for orders that are "En cours" */}
+                      {order.status === 'En cours' && (
+                        <div className="flex gap-2 pt-3 border-t border-gray-100">
+                          <button
+                            onClick={() => handleOrderStatusUpdate(order.id, 'Livrée')}
+                            className="flex items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors duration-200 text-sm font-medium"
+                          >
+                            <FiCheck className="w-4 h-4" />
+                            Marquer comme livrée
+                          </button>
+                          <button
+                            onClick={() => handleOrderStatusUpdate(order.id, 'Annulée')}
+                            className="flex items-center gap-2 px-3 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors duration-200 text-sm font-medium"
+                          >
+                            <FiXCircle className="w-4 h-4" />
+                            Annuler
+                          </button>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 transform transition-all">
+            <div className="p-6">
+              {/* Header */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                  <FiAlertCircle className="w-6 h-6 text-red-600" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">Supprimer l'historique</h3>
+                  <p className="text-sm text-gray-500">Cette action est irréversible</p>
+                </div>
+              </div>
+
+              {/* Content */}
+              <p className="text-gray-700 mb-6">
+                Êtes-vous sûr de vouloir supprimer votre historique de commandes ? 
+                Toutes vos commandes passées seront définitivement supprimées.
+              </p>
+
+              {/* Actions */}
+              <div className="flex gap-3 justify-end">
+                <button
+                  onClick={() => setShowDeleteConfirm(false)}
+                  className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200 font-medium"
+                >
+                  Annuler
+                </button>
+                <button
+                  onClick={handleClearAllOrders}
+                  className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors duration-200 font-medium"
+                >
+                  Supprimer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

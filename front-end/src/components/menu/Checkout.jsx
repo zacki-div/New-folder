@@ -84,7 +84,7 @@ function Checkout({
           </div>
           <div className="flex items-center justify-between text-base font-semibold mt-2">
             <span>Total</span>
-            <span>${Number(total).toFixed(2)}</span>
+            <span>{Number(total).toFixed(2)} DH</span>
           </div>
         </div>
 

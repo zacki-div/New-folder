@@ -16,7 +16,7 @@ function Cards({
   description = 'Savoureux et frais, recommandé par le chef.',
   rating = 4.6,
   time = '25 min',
-  level = 'Facile',
+  price = 50,
   onAdd = () => {},
   onToggleFavorite = null,
   favorite = false,
@@ -107,8 +107,8 @@ function Cards({
           </>
         )}
 
-        {level && (
-          <div className="absolute left-3 bottom-3 bg-white/90 text-orange-600 text-xs font-semibold px-2 py-1 rounded-full border border-orange-100">{level}</div>
+        {price && (
+          <div className="absolute left-3 bottom-3 bg-white/90 text-orange-600 text-xs font-semibold px-2 py-1 rounded-full border border-orange-100">{price} DH</div>
         )}
 
         <button

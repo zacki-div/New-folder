@@ -48,7 +48,7 @@ function CartItem({
         </div>
       </div>
       <div className="flex flex-col items-end gap-2">
-        <div className="text-[#1b2629] font-semibold">${total.toFixed(2)}</div>
+        <div className="text-[#1b2629] font-semibold">{total.toFixed(2)} DH</div>
         <div className="inline-flex items-center gap-2 border rounded-full px-2 py-1" onClick={(e)=> e.stopPropagation()}>
           <button
             type="button"

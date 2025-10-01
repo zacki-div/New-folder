@@ -60,7 +60,7 @@ function Menu() {
       />
       <div className="max-w-3xl mx-auto px-6">
         <Search
-          placeholder="Search dishes or categories..."
+          placeholder="Rechercher des plats ou catégories..."
           value={searchQuery}
           onChange={setSearchQuery}
           onSearch={setSearchQuery}

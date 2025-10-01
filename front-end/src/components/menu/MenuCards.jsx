@@ -57,7 +57,6 @@ function MenuCards({ query = '' }) {
       (r.tags || []).some((t) => (t || '').toLowerCase().includes(q))
     )
   }, [categoryName, query])
-
   return (
     <section className="py-8">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -71,6 +70,7 @@ function MenuCards({ query = '' }) {
               description={r.description}
               rating={r.rating}
               time={r.time}
+              price={getPriceFor(r)}
               tags={r.tags}
               viewUrl={`/recipe/${r.id}`}
               onAdd={() => addToCart({ id: r.id, title: r.title, image: r.image, price: getPriceFor(r), quantity: 1 })}

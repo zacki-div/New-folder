@@ -115,6 +115,7 @@ function Favorites() {
                   description={r.description}
                   rating={r.rating}
                   time={r.time}
+                  price={getPriceFor(r)}
                   tags={r.tags}
                   viewUrl={`/recipe/${r.id}`}
                   onAdd={() => addToCart({ id: r.id, title: r.title, image: r.image, price: getPriceFor(r), quantity: 1 })}

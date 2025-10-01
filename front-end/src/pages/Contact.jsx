@@ -55,9 +55,9 @@ function Contact() {
           {/* Contact info */}
           <div className="space-y-6">
             <h2 className="font-serif text-2xl font-bold mb-2">Informations de Contact</h2>
-            <InfoItem icon={Mail} title="Email" text="support@foodieapp.com" />
-            <InfoItem icon={Phone} title="Téléphone" text="(+1) 555-0199" delay={100} />
-            <InfoItem icon={MapPin} title="Adresse" text="123 Market Street, San Francisco, CA" delay={200} />
+            <InfoItem icon={Mail} title="Email" text="foodmaroc@gmail.com" />
+            <InfoItem icon={Phone} title="Téléphone" text="0773548354" delay={100} />
+            <InfoItem icon={MapPin} title="Adresse" text="Molay Rachid, Casablanca" delay={200} />
             <InfoItem icon={Clock} title="Heures" text="Lun–Sam: 9:00–20:00, Dim: 10:00–18:00" delay={300} />
           </div>
 

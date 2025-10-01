@@ -35,7 +35,7 @@ function Payment() {
       <div className="max-w-md mx-auto px-6 lg:px-8">
         <h1 className="font-serif font-bold text-3xl mb-6 text-center">Paiement</h1>
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8">
-          <div className="mb-4 text-gray-600 text-sm">Total de la commande: <span className="font-semibold text-[#1b2629]">${Number(order.total || 0).toFixed(2)}</span></div>
+          <div className="mb-4 text-gray-600 text-sm">Total de la commande: <span className="font-semibold text-[#1b2629]">{Number(order.total || 0).toFixed(2)} DH</span></div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">Nom sur la carte</label>
