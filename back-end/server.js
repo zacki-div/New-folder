@@ -27,7 +27,7 @@ app.use(limiter);
 
 // Configuration CORS
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL || 'https://food-maroc.vercel.app',
   credentials: true,
   optionsSuccessStatus: 200
 }));

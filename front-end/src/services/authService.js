@@ -28,7 +28,8 @@ class AuthService {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || 'Erreur lors de l\'inscription');
+        console.error("📛 Erreurs:", data);
+        throw new Error(data.message || "Erreur inconnue");
       }
 
       // Stocker le token et l'utilisateur

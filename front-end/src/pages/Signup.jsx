@@ -38,12 +38,14 @@ function Signup() {
 
   async function handleSubmit(e) {
     e.preventDefault()
+    console.log("🔍 Données envoyées:", form);
     if (!form.firstName.trim() || !form.lastName.trim() || !form.email.trim() || !form.password.trim()) {
       return
     }
 
     try {
       await register(form)
+
       navigate('/')
     } catch (err) {
       // L'erreur est gérée par le contexte
