@@ -27,7 +27,7 @@ app.use(limiter);
 
 // Configuration CORS
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://food-maroc.vercel.app',
+  origin:'https://food-maroc.vercel.app' || process.env.FRONTEND_URL ,
   credentials: true,
   optionsSuccessStatus: 200
 }));
